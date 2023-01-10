@@ -46,7 +46,7 @@ display_help() {
     echo
     echo "   -s, -style             select [(l|light)|(m|mono)(p|paper)]"
     echo "   -q, -query             input starting search query"
-    echo "   -r, -repository        browse a specific repo [core|extra|community|aur]"
+    echo "   -r, -repository        browse a specific repo [system|world|galaxy|universe|omniverse|extra|community|blackarch|chaotic-aur||lib32|multilib|aur]"
     echo "   -m, -margin            set the margin 10|2,5|5,3,8|1,5,2,3"
     echo "   -h, -help              show this help"
     echo "   -v, -version           get yups version"
@@ -78,7 +78,7 @@ declare -a repo
 declare -a not_supported_repo
 declare -a tmp_array
 
-supported_repositories='core|extra|community|aur'
+supported_repositories='system|world|galaxy|universe|omniverse|extra|community|blackarch|chaotic-aur||lib32|multilib|aur'
 margin=2,3 # default margin
 
 check_supported_repo() {
