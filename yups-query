@@ -23,37 +23,38 @@ version=1.0.0
 usage="usage: yups-query -sm {args}"
 margin=2,3 # default margin
 
-while getopts s:m: option
-    do
+while getopts s:m: option; do
     case "${option}" in
-        s | style) style=${OPTARG}
-            ;;
-        m | margin) margin=${OPTARG}
-            ;;
-        *)
-            echo $usage
-            exit 0
-            ;;
+    s | style)
+        style=${OPTARG}
+        ;;
+    m | margin)
+        margin=${OPTARG}
+        ;;
+    *)
+        echo $usage
+        exit 0
+        ;;
     esac
 done
 
 default_colors() {
-    header=#fabd2f
-    bg=#1d2021
-    bgp=#504945
-    fg=#fe8019
-    fgp=#fabd2f
-    previewbg=#1d2001
-    previewfg=#b8bb26
-    info=#83a598
-    border=#fb4934
-    spinner=#fe8019
-    hl=#83a598
-    hlp=#8ec07c
-    pointer=#fb4934
-    prompt=#fb4934
-    gutter=#3c3836
-    marker=#fb4934
+    header=#666666
+    bg=#1c1c1c
+    bgp=#202020
+    fg=#e9e9e9
+    fgp=#bbbbbb
+    previewbg=#1c1c1c
+    previewfg=#e9e9e9
+    info=#cbcbcb
+    border=#555555
+    spinner=#666666
+    hl=#555555
+    hlp=#666666
+    pointer=#444444
+    prompt=#555555
+    gutter=#323232
+    marker=#666666
 }
 
 light_colors() {
@@ -115,30 +116,30 @@ paper_colors() {
 
 # set colors
 case $style in
-    light | l)
-		light_colors
-		;;
-    mono | m)
-        mono_colors
-		;;
-    paper | p)
-        paper_colors
-		;; 
-	*)
-		default_colors
-		;;
+light | l)
+    light_colors
+    ;;
+mono | m)
+    mono_colors
+    ;;
+paper | p)
+    paper_colors
+    ;;
+*)
+    default_colors
+    ;;
 esac
 
 paru -Qq | fzf --preview 'paru -Qil {1}' --reverse --margin $margin% \
---header=$'╔════════════════════╗\n║░   yups-query   ░║\n╚════════════════════╝\
+    --header=$'╔════════════════════╗\n║░   yups-query   ░║\n╚════════════════════╝\
 installed packages:\n\n' \
---pointer='▓' --prompt='' --border=sharp \
---bind 'ctrl-w:toggle-preview-wrap' \
---bind 'ctrl-p:toggle-preview' \
---bind 'ctrl-l:clear-query' \
---bind 'shift-right:preview-page-down' \
---bind 'shift-left:preview-page-up' \
---bind 'enter:abort' \
---color='bg:'$bg,'bg+:'$bgp,'info:'$info,'border:'$border,'spinner:'$spinner \
---color='hl:'$hl,'fg:'$fg,'fg+:'$fgp,'pointer:'$pointer,'prompt:'$prompt,'header:'$header \
---color='hl+:'$hlp,'marker:'$marker,'preview-bg:'$previewbg,'preview-fg:'$previewfg
+    --pointer='▓' --prompt='' --border=sharp \
+    --bind 'ctrl-w:toggle-preview-wrap' \
+    --bind 'ctrl-p:toggle-preview' \
+    --bind 'ctrl-l:clear-query' \
+    --bind 'shift-right:preview-page-down' \
+    --bind 'shift-left:preview-page-up' \
+    --bind 'enter:abort' \
+    --color='bg:'$bg,'bg+:'$bgp,'info:'$info,'border:'$border,'spinner:'$spinner \
+    --color='hl:'$hl,'fg:'$fg,'fg+:'$fgp,'pointer:'$pointer,'prompt:'$prompt,'header:'$header \
+    --color='hl+:'$hlp,'marker:'$marker,'preview-bg:'$previewbg,'preview-fg:'$previewfg
