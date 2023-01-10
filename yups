@@ -38,7 +38,7 @@ usage="usage: yups -sqrmfy {args} -hv"
 display_help() {
     echo
     echo "╔════════════════════╗"
-    echo "║░      yups      ░║"
+    echo "║░      yups        ░║"
     echo "╚════════════════════╝"
     echo
     echo "$usage"
